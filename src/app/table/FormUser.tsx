@@ -235,9 +235,9 @@ export default function FormUser({ editData, onFinishEdit }: any) {
 
             <Form.Item label={t("gender")} style={{ marginTop: 16 }} name="gender" rules={[{ required: true, message: t("require_gender") }]}>
                 <Radio.Group>
-                    <Radio value="Male">Male</Radio>
-                    <Radio value="Female">Female</Radio>
-                    <Radio value="Unisex">Unisex</Radio>
+                    <Radio value="Male">{t("gender_male")}</Radio>
+                    <Radio value="Female">{t("gender_female")}</Radio>
+                    <Radio value="Unisex">{t("gender_unisex")}</Radio>
                 </Radio.Group>
             </Form.Item>
 
@@ -284,6 +284,8 @@ export default function FormUser({ editData, onFinishEdit }: any) {
                     name="passportNo"
                     rules={[
                         { required: false, message: "" },
+                        { pattern: /^\d+$/, message: t("only_numbers") }
+                        
                     ]}
                 >
                     <Input placeholder={t("placeholder_passport")} />
@@ -300,7 +302,7 @@ export default function FormUser({ editData, onFinishEdit }: any) {
             >
                 <Form.Item
                     name="exSalary"
-                      rules={[{ required: true, message: t("require_salary") }]}
+                      rules={[{ required: true, message: t("require_salary") },{ pattern: /^\d+$/, message: t("only_numbers") }]}
                 >
                     <Input placeholder={t("placeholder_salary")} />
                 </Form.Item>

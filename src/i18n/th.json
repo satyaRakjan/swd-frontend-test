@@ -15,6 +15,7 @@
   "title_ms": "นางสาว",
   "require_title": "กรุณาเลือกคำนำหน้า",
 
+  "fullName": "ชื่อ-นามสกุล",
   "firstname": "ชื่อ",
   "require_firstname": "กรุณากรอกชื่อ",
   "lastname": "นามสกุล",
@@ -28,6 +29,8 @@
   "require_nationality": "กรุณาเลือกสัญชาติ",
   "nationality_thai": "ไทย",
   "nationality_american": "อเมริกัน",
+  "Thai": "ไทย",
+  "American": "อเมริกัน",
 
   "citizen_id": "เลขบัตรประชาชน",
   "require_citizenId": "กรุณากรอกเลขบัตรประชาชน",
@@ -37,7 +40,13 @@
   "require_gender": "กรุณาเลือกเพศ",
   "gender_male": "ชาย",
   "gender_female": "หญิง",
-  "gender_unisex": "ไม่ระบุ",
+  "Male": "ชาย",
+  "Female": "หญิง",
+  "Unisex": "ไม่จำกัดเพศ",
+
+
+
+  "gender_unisex": "ไม่จำกัดเพศ",
 
   "phone_number": "หมายเลขโทรศัพท์",
   "require_phone": "กรุณากรอกหมายเลขโทรศัพท์",
@@ -55,5 +64,15 @@
   "submit": "บันทึก",
 
 
-  "formtTitle": "การจัดการฟอร์มและตาราง"
+  "formtTitle": "การจัดการฟอร์มและตาราง",
+    "mange": "จัดการ",
+  "edit": "แก้ไข",
+  "delete": "ลบ",
+  "selectAll": "เลือกทั้งหมด",
+  "deleteAll": "ลบทั้งหมด",
+  "yes": "ใช่",
+  "no": "ไม่",
+  "deleteWarning":"คุณแน่ใจที่จะลบผู้ใช้ที่เลือกทั้งหมดหรือไม่?",
+  "deleteSucess":"ลบผู้ใช้ที่เลือกแล้ว!"
+
 }

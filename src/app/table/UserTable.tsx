@@ -1,111 +1,82 @@
-// "use client";
-// import { Table, Button, Checkbox } from "antd";
-// import { useDispatch, useSelector } from "react-redux";
-// import { RootState } from "../../store/store";
-// import { deleteUser, deleteMany } from "../../store/userSlice";
-// import { useState } from "react";
 
-// export default function UserTable({ onEdit }: any) {
-//   const users = useSelector((s: RootState) => s.users.users);
-//   const dispatch = useDispatch();
-//   const [selected, setSelected] = useState<string[]>([]);
-
-//   const columns = [
-//     { title: "Name", dataIndex: "firstname", render: (_: any, r: any) => r.firstname + " " + r.lastname },
-//     { title: "Gender", dataIndex: "gender" },
-//     { title: "Phone", dataIndex: "phone" },
-//     { title: "Nationality", dataIndex: "nationality" },
-//     {
-//       title: "Manage",
-//       render: (_: any, record: any) => (
-//         <>
-//           <Button onClick={() => onEdit(record)} type="link">EDIT</Button>
-//           <Button danger type="link" onClick={() => dispatch(deleteUser(record.id))}>
-//             DELETE
-//           </Button>
-//         </>
-//       )
-//     }
-//   ];
-
-//   return (
-//     <>
-     
-//       <Table
-//         rowKey="id"
-//         dataSource={users}
-//         columns={columns}
-//         pagination={{ pageSize: 5 }}
-//         rowSelection={{
-//           selectedRowKeys: selected,
-//           onChange: (keys) => setSelected(keys as string[])
-//         }}
-//       />
-//     </>
-//   );
-// }
 
 
 "use client";
-import { Table, Button, Checkbox ,Popconfirm,message } from "antd";
+import { Table, Button, Checkbox, Popconfirm, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { deleteUser, deleteMany } from "../../store/userSlice";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import type { User } from "../../type/User";
+
+type ColumnItem = {
+  title: string;
+  dataIndex?: keyof User;
+  sortable?: boolean;
+  type?: "action";
+  renderName?: (r: User) => string;
+};
+
+
 
 export default function UserTable({ onEdit }: any) {
+  const { t } = useTranslation();
   const users = useSelector((s: RootState) => s.users.users);
   const dispatch = useDispatch();
   const [selected, setSelected] = useState<string[]>([]);
-  const columnConfig = [
-    
-  { title: "Name", dataIndex: "firstname", renderName: (r: any) => r.firstname + " " + r.lastname, sortable: true },
-  { title: "Gender", dataIndex: "gender", sortable: true },
-  { title: "Phone", dataIndex: "phone", renderName: (r: any) => `${r.countryCode || ""}${r.phone || ""}`, sortable: true },
-  { title: "Nationality", dataIndex: "nationality", sortable: true },
-  { title: "Manage", type: "action" }, // action column ไม่ต้อง sort
+
+
+
+  const columnConfig : ColumnItem[] = [
+
+    { title: t("fullName"), dataIndex: "firstname", renderName: (r: User) => r.firstname + " " + r.lastname, sortable: true },
+    { title: t("gender"), dataIndex: "gender", sortable: true, renderName: (r: User) => t(`${r.gender}`) },
+    { title: t("phone_number"), dataIndex: "phone", renderName: (r: User) => `${r.countryCode || ""}${r.phone || ""}`, sortable: true },
+    { title: t("require_nationality"), dataIndex: "nationality", renderName: (r: User) => t(`${r.nationality}`), sortable: true },
+    { title: t("mange"), type: "action" }, // action column ไม่ต้อง sort
   ];
 
-const handleDeleteSelected = () => {
+  const handleDeleteSelected = () => {
     if (selected.length === 0) {
       message.warning("Please select at least one user to delete!");
       return;
     }
     dispatch(deleteMany(selected));
-    message.success("Selected users deleted!");
+    message.success(t("deleteSucess"));
     setSelected([]);
   };
 
-const columns = columnConfig.map(col => {
-  if (col.type === "action") {
+  const columns = columnConfig.map(col => {
+    if (col.type === "action") {
+      return {
+        title: col.title,
+        render: (_: User, record: User) => (
+          <>
+            <Button onClick={() => onEdit(record)} type="link">{t("edit")}</Button>
+            <Button danger type="link" onClick={() => dispatch(deleteUser(record.id))}>
+              {t("delete")}
+            </Button>
+          </>
+        ),
+      };
+    }
+
     return {
       title: col.title,
-      render: (_: any, record: any) => (
-        <>
-          <Button onClick={() => onEdit(record)} type="link">EDIT</Button>
-          <Button danger type="link" onClick={() => dispatch(deleteUser(record.id))}>
-            DELETE
-          </Button>
-        </>
-      ),
-    };
-  }
-
-  return {
-    title: col.title,
-    dataIndex: col.dataIndex,
-    render: col.renderName
-          ? (_: any, record: any) => col.renderName(record)
-      : undefined, // แก้ตรงนี้
-    sorter: col.sortable
-      ? (a: any, b: any) => {
-          const valA = col.renderName ? col.renderName(a) : a[col.dataIndex];
-          const valB = col.renderName ? col.renderName(b) : b[col.dataIndex];
+      dataIndex: col.dataIndex,
+      render: col.renderName
+        ? (_: any, record: User) => col.renderName!(record)
+        : undefined,
+      sorter: col.sortable
+        ? (a: User, b: User) => {
+          const valA = col.renderName ? col.renderName(a) : a[col.dataIndex!];
+          const valB = col.renderName ? col.renderName(b) : b[col.dataIndex!];
           return valA.toString().localeCompare(valB.toString());
         }
-      : undefined,
-  };
-});
+        : undefined,
+    };
+  });
 
   return (
     <>
@@ -117,21 +88,23 @@ const columns = columnConfig.map(col => {
             setSelected(e.target.checked ? users.map(u => u.id) : [])
           }
         >
-          Select All
+          
+          {t("selectAll")}
         </Checkbox>
 
         <Popconfirm
-          title="Are you sure to delete all selected users?"
+          title={t("deleteWarning")}
           onConfirm={handleDeleteSelected}
-          okText="Yes"
-          cancelText="No"
+          okText= {t("yes")}
+          cancelText={t("no")}
         >
           <Button
             danger
             style={{ marginLeft: 10 }}
             disabled={selected.length === 0}
           >
-            Delete All
+            
+               {t("deleteAll")}
           </Button>
         </Popconfirm>
       </div>
@@ -141,7 +114,7 @@ const columns = columnConfig.map(col => {
         rowKey="id"
         dataSource={users}
         columns={columns}
-        pagination={{ pageSize: 2}}
+        pagination={{ pageSize: 2 }}
         rowSelection={{
           selectedRowKeys: selected,
           onChange: (keys) => setSelected(keys as string[])

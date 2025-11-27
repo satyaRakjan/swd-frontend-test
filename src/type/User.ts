@@ -10,4 +10,6 @@ profix: string;
   phone: number;
   passportNo: string;
   expedtedSalary: number;
+  nationality: string;
+  countryCode: string;
 }

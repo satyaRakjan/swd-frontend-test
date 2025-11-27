@@ -1,62 +1,60 @@
 {
   "HomeTitle": "Home",
-
-  
   "shapeTitle": "Layout & Style",
-
   "moveShape": "Move Shape",
   "movePosition": "Move Position",
   "language": "Language",
   "right": "right",
   "left": "left",
-
-  
-
   "formtTitle": "Form & Table",
-  
   "title": "Title",
   "title_mr": "Mr.",
   "title_mrs": "Mrs.",
   "title_ms": "Ms.",
   "require_title": "Please select a title",
-
+  "fullName": "Full Name",
   "firstname": "First Name",
   "require_firstname": "Please enter first name",
   "lastname": "Last Name",
   "require_lastname": "Please enter last name",
-
   "birthdate": "Birthdate",
   "placeholder_birthdate": "DD/MM/YY",
   "require_birthdate": "Please select birthdate",
-
   "nationality": "Nationality",
   "require_nationality": "Please select nationality",
   "nationality_thai": "Thai",
   "nationality_american": "American",
-
+  "Thai": "Thai",
+  "American": "American",
   "citizen_id": "Citizen ID",
   "require_citizenId": "Please enter citizen ID",
   "only_numbers": "Only numbers are allowed",
-
   "gender": "Gender",
   "require_gender": "Please select gender",
   "gender_male": "Male",
   "gender_female": "Female",
   "gender_unisex": "Unisex",
-
+  "Male": "Male",
+  "Female": "Female",
+  "Unisex": "Unisex",
   "phone_number": "Phone Number",
   "require_phone": "Please enter phone number",
   "placeholder_phone": "Enter phone number",
   "only_numbers_max9": "Only numbers up to 9 digits are allowed",
-
   "passport_no": "Passport No",
   "placeholder_passport": "Enter passport number",
-
   "expected_salary": "Expected Salary",
   "require_salary": "Please enter expected salary",
   "placeholder_salary": "Enter expected salary",
-
   "reset": "Reset",
-  "submit": "Submit"
-
+  "submit": "Submit",
+  "mange": "Mange",
+  "edit": "EDIT",
+  "delete": "Delete",
+  "selectAll": "Select All",
+  "deleteAll": "Delete All",
+  "yes": "Yes",
+  "no": "No",
+  "deleteWarning":"Are you sure to delete all selected users?",
+  "deleteSucess":"Selected users deleted!"
 }
