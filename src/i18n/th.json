@@ -1,0 +1,59 @@
+{
+  "HomeTitle": "หน้าหลัก",
+
+  "shapeTitle": "การจัดการหน้าเว็บ",
+
+  "moveShape": "เลื่อนรูปทรง",
+  "movePosition": "ย้ายตำแหน่ง",
+  "language": "ภาษา",
+  "right": "ขวา",
+  "left": "ซ้าย",
+
+    "title": "คำนำหน้า",
+  "title_mr": "นาย",
+  "title_mrs": "นาง",
+  "title_ms": "นางสาว",
+  "require_title": "กรุณาเลือกคำนำหน้า",
+
+  "firstname": "ชื่อ",
+  "require_firstname": "กรุณากรอกชื่อ",
+  "lastname": "นามสกุล",
+  "require_lastname": "กรุณากรอกนามสกุล",
+
+  "birthdate": "วันเกิด",
+  "placeholder_birthdate": "วัน/เดือน/ปี",
+  "require_birthdate": "กรุณาเลือกวันเกิด",
+
+  "nationality": "สัญชาติ",
+  "require_nationality": "กรุณาเลือกสัญชาติ",
+  "nationality_thai": "ไทย",
+  "nationality_american": "อเมริกัน",
+
+  "citizen_id": "เลขบัตรประชาชน",
+  "require_citizenId": "กรุณากรอกเลขบัตรประชาชน",
+  "only_numbers": "กรอกได้เฉพาะตัวเลข",
+
+  "gender": "เพศ",
+  "require_gender": "กรุณาเลือกเพศ",
+  "gender_male": "ชาย",
+  "gender_female": "หญิง",
+  "gender_unisex": "ไม่ระบุ",
+
+  "phone_number": "หมายเลขโทรศัพท์",
+  "require_phone": "กรุณากรอกหมายเลขโทรศัพท์",
+  "placeholder_phone": "กรอกหมายเลขโทรศัพท์",
+  "only_numbers_max9": "กรอกได้เฉพาะตัวเลขไม่เกิน 9 หลัก",
+
+  "passport_no": "เลขที่หนังสือเดินทาง",
+  "placeholder_passport": "กรอกเลขหนังสือเดินทาง",
+
+  "expected_salary": "เงินเดือนที่คาดหวัง",
+  "require_salary": "กรุณากรอกเงินเดือนที่คาดหวัง",
+  "placeholder_salary": "กรอกเงินเดือนที่คาดหวัง",
+
+  "reset": "รีเซ็ต",
+  "submit": "บันทึก",
+
+
+  "formtTitle": "การจัดการฟอร์มและตาราง"
+}
