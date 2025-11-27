@@ -79,7 +79,11 @@
     "confirm_delete_title": "ยืนยันการลบ",
 
     "createSuccess": "สร้างข้อมูลสำเร็จ",
-  "updateSuccess": "แก้ไขข้อมูลสำเร็จ"
+  "updateSuccess": "แก้ไขข้อมูลสำเร็จ",
+
+  "addUser": "สร้างรายชื่อ",
+  "editUser": "แก้ไขราชื่อ"
+
 
 
 }

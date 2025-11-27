@@ -21,8 +21,11 @@ export default function TablePage() {
         <div style={{ padding: 40 }} >
 
             <h1 style={{ marginBottom: 24 }}>{t("formtTitle")}</h1>
+{/*             
+  "addUser": "สร้างรายชื่อ",
+  "editUser": "แก้ไขราชื่อ" */}
             <Card
-                title={editData ? "Edit User" : "Add User"}
+                title={editData ? t("editUser") : t("addUser")}
                 style={{ marginBottom: 24 }}
             >
                 <FormUser editData={editData} onFinishEdit={() => setEditData(null)} />

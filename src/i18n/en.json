@@ -62,5 +62,8 @@
   "confirm_delete_title": "Confirm Deletion",
 
    "createSuccess": "User created successfully",
-  "updateSuccess": "User updated successfully"
+  "updateSuccess": "User updated successfully",
+
+  "addUser": "Add User",
+  "editUser": "Edit User"
 }
