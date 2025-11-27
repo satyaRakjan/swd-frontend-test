@@ -28,7 +28,7 @@ export default function UserTable({ onEdit }: any) {
 
 
 
-  const columnConfig : ColumnItem[] = [
+  const columnConfig: ColumnItem[] = [
 
     { title: t("fullName"), dataIndex: "firstname", renderName: (r: User) => r.firstname + " " + r.lastname, sortable: true },
     { title: t("gender"), dataIndex: "gender", sortable: true, renderName: (r: User) => t(`${r.gender}`) },
@@ -39,13 +39,20 @@ export default function UserTable({ onEdit }: any) {
 
   const handleDeleteSelected = () => {
     if (selected.length === 0) {
-      message.warning("Please select at least one user to delete!");
       return;
     }
     dispatch(deleteMany(selected));
     message.success(t("deleteSucess"));
     setSelected([]);
   };
+
+  const handleDeleteSingle = (record: any) => {
+    dispatch(deleteUser(record.id));
+    message.success(t("deleteSucess")); 
+  };
+  
+
+  
 
   const columns = columnConfig.map(col => {
     if (col.type === "action") {
@@ -54,9 +61,24 @@ export default function UserTable({ onEdit }: any) {
         render: (_: User, record: User) => (
           <>
             <Button onClick={() => onEdit(record)} type="link">{t("edit")}</Button>
-            <Button danger type="link" onClick={() => dispatch(deleteUser(record.id))}>
+            <Popconfirm
+              title={t("confirm_delete_title")}
+              description={t("confirm_delete_description")}
+              okText={t("yes")}
+              cancelText={t("no")}
+              onConfirm={() => 
+               handleDeleteSingle(record)
+                
+              }
+            >
+              <Button danger type="link">
+                {t("delete")}
+              </Button>
+            </Popconfirm>
+
+            {/* <Button danger type="link" onClick={() => dispatch(deleteUser(record.id))}>
               {t("delete")}
-            </Button>
+            </Button> */}
           </>
         ),
       };
@@ -88,14 +110,14 @@ export default function UserTable({ onEdit }: any) {
             setSelected(e.target.checked ? users.map(u => u.id) : [])
           }
         >
-          
+
           {t("selectAll")}
         </Checkbox>
 
         <Popconfirm
           title={t("deleteWarning")}
           onConfirm={handleDeleteSelected}
-          okText= {t("yes")}
+          okText={t("yes")}
           cancelText={t("no")}
         >
           <Button
@@ -103,8 +125,8 @@ export default function UserTable({ onEdit }: any) {
             style={{ marginLeft: 10 }}
             disabled={selected.length === 0}
           >
-            
-               {t("deleteAll")}
+
+            {t("deleteAll")}
           </Button>
         </Popconfirm>
       </div>

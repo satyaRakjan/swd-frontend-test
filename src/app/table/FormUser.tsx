@@ -1,5 +1,5 @@
 "use client";
-import { Space, Button, Form, Input, Radio, Select, Row, Col, DatePicker } from "antd";
+import { Space, Button, Form, Input, Radio, Select, Row, Col, DatePicker,message } from "antd";
 import { User } from "../../type/User";
 import { useDispatch } from "react-redux";
 import { addUser, updateUser } from "../../store/userSlice";
@@ -29,7 +29,6 @@ export default function FormUser({ editData, onFinishEdit }: any) {
     const ref3 = useRef<any>(null);
     const ref4 = useRef<any>(null);
     const ref5 = useRef<any>(null);
-    console.log(editData)
     useEffect(() => {
         if (!editData) {
             form.resetFields();
@@ -43,7 +42,6 @@ export default function FormUser({ editData, onFinishEdit }: any) {
                 title: editData.title,
                 firstname: editData.firstname,
                 lastname: editData.lastname,
-                // Birthdate ต้องแปลงเป็น dayjs
                 birthdate: editData.birthdate ? dayjs(editData.birthdate) : null,
                 nationality: editData.nationality,
                 citizenId1: editData.citizenId1,
@@ -56,25 +54,21 @@ export default function FormUser({ editData, onFinishEdit }: any) {
                 passportNo: editData.passportNo,
                 exSalary: editData.exSalary,
             });
-            // form.setFieldsValue({
-            //     ...editData,
-
-            // });
+       
         } else {
-            // form.resetFields();
         }
     }, [editData]);
 
 
 
-    console.log(editData)
     const submit = (values: User) => {
-        console.log(values)
         if (editData) {
             dispatch(updateUser({ ...values, id: editData.id }));
+             message.success(t("updateSuccess"));
             onFinishEdit();
         } else {
             dispatch(addUser({ ...values, id: uuid() }));
+            message.success(t("createSuccess"));
         }
         form.resetFields();
     };
@@ -145,7 +139,7 @@ export default function FormUser({ editData, onFinishEdit }: any) {
                 </Col>
             </Row>
 
-            <Form.Item label={t("citizen_id")} style={{ marginBottom: 0 }}>
+            <Form.Item  required label={t("citizen_id")} style={{ marginBottom: 0 }} >
                 <Space.Compact>
 
                     <Form.Item
@@ -246,22 +240,20 @@ export default function FormUser({ editData, onFinishEdit }: any) {
                 required
             >
                 <Space.Compact style={{ width: "100%" }}>
-                    {/* Select สำหรับ country code */}
                     <Form.Item
-                        name="countryCode" // เก็บค่า country code
+                        name="countryCode" 
                         noStyle
-                        initialValue={code} // ค่าเริ่มต้น
+                        initialValue={code} 
                     >
                         <Select
                             style={{ width: 150 }}
-                            onChange={(v) => setCode(v)} // อัปเดต state ถ้าต้องการ
+                            onChange={(v) => setCode(v)} 
                             options={countryCodes}
                         />
                     </Form.Item>
 
-                    {/* Input เบอร์โทร */}
                     <Form.Item
-                        name="phone" // เก็บค่า phone
+                        name="phone" 
                         noStyle
                         rules={[
                             { required: true, message: t("require_phone") },
@@ -278,7 +270,6 @@ export default function FormUser({ editData, onFinishEdit }: any) {
 
             <Form.Item
                 label={t("passport_no")}
-                required
             >
                 <Form.Item
                     name="passportNo"

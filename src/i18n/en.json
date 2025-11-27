@@ -56,5 +56,11 @@
   "yes": "Yes",
   "no": "No",
   "deleteWarning":"Are you sure to delete all selected users?",
-  "deleteSucess":"Selected users deleted!"
+  "deleteSucess":"Selected users deleted!",
+
+  "confirm_delete_description": "Do you really want to delete this user?",
+  "confirm_delete_title": "Confirm Deletion",
+
+   "createSuccess": "User created successfully",
+  "updateSuccess": "User updated successfully"
 }

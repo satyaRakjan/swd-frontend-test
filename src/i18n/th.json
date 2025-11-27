@@ -73,6 +73,13 @@
   "yes": "ใช่",
   "no": "ไม่",
   "deleteWarning":"คุณแน่ใจที่จะลบผู้ใช้ที่เลือกทั้งหมดหรือไม่?",
-  "deleteSucess":"ลบผู้ใช้ที่เลือกแล้ว!"
+  "deleteSucess":"ลบผู้ใช้ที่เลือกแล้ว!",
+
+    "confirm_delete_description": "คุณต้องการลบผู้ใช้รายนี้จริงหรือไม่?",
+    "confirm_delete_title": "ยืนยันการลบ",
+
+    "createSuccess": "สร้างข้อมูลสำเร็จ",
+  "updateSuccess": "แก้ไขข้อมูลสำเร็จ"
+
 
 }

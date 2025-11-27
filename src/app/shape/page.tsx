@@ -1,19 +1,24 @@
 
 "use client";
 import "../../styles/shapes.scss";
-import  React,{ useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { rotateShape } from "../../store/shapeSlice";
 import { RootState } from "../../store/store";
 import { useTranslation } from "react-i18next";
-import { Button, Flex } from 'antd';
+import { Button, Flex, Card } from 'antd';
 import { LeftOutlined, RightOutlined, UpOutlined, DownOutlined, SettingOutlined } from '@ant-design/icons';
 interface ShapeState {
   type: 'circle' | 'square' | 'oval' | 'trapezoid' | 'rectangle' | 'parallelogram';
   color: string;
   reversed: boolean;
 }
-
+const boxStyle: React.CSSProperties = {
+  width: '100%',
+  height: 120,
+  borderRadius: 6,
+  border: '1px solid #40a9ff',
+};
 const ALLOWED_COLORS = ["#FFA200", "#6EDA78"];
 
 const getRandomColor = () => ALLOWED_COLORS[Math.floor(Math.random() * ALLOWED_COLORS.length)];
@@ -63,7 +68,8 @@ export default function ShapePage() {
   }
 
   const swapPosition = () => {
- 
+    setLayoutDown(prev => !prev);
+
     // setLayoutDown((prev) => !prev);
     // setShapeStates(prevStates => prevStates.map(shape => ({
     //   ...shape,
@@ -117,27 +123,40 @@ export default function ShapePage() {
   return (
     <div style={{ margin: '16px 0' }}>
       <h1 style={{ marginBottom: 24 }}>{t("shapeTitle")}</h1>
-      <div style={{ display: "flex", gap: 16, justifyContent: "center" }}>
+      <div style={{ display: "flex", gap: "15px", justifyContent: "center" }}>
         <Button icon={<LeftOutlined />} onClick={moveLeft}>{t("moveShape")} {t("left")}</Button>
-        <Button icon={<UpOutlined />} type="primary" onClick={swapPosition}>{t("movePosition")}</Button>
+        <Button icon={layoutDown ? <DownOutlined /> : <UpOutlined />} type="primary" onClick={swapPosition}>{t("movePosition")}</Button>
 
         <Button type="default" onClick={moveRight} >
           {t("moveShape")} {t("right")} <RightOutlined />
         </Button>
       </div>
-
-      <div className={`layout-wrapper ${layoutDown ? 'layout-down' : 'layout-up'}`}>
-        <div className="shape-grid">
-          {shapeStates.map((shape, i) => (
+      <Card style={{ marginTop: 16,marginRight: "200px" ,backgroundColor: '#FFF8DE' }} >
+        <Flex justify={layoutDown ? "center" : "flex-end"} align="center" style={{ gap: "15px",}}>
+          {shapeStates.slice(3, 6).map((shape, i) => (
             <div
-              key={i}
+              key={`left-${i}`}
               className={`shape ${shape.type}`}
               style={getShapeStyle(shape, rotation)}
               onClick={randomizeShape}
             />
           ))}
-        </div>
-      </div>
+        </Flex>
+
+        <Flex justify={layoutDown ? "flex-end" : "center"} align="center" style={{ marginTop: 16, gap: "15px" }}>
+          {shapeStates.slice(0, 3).map((shape, i) => (
+            <div
+              key={`right-${i}`}
+              className={`shape ${shape.type}`}
+              style={getShapeStyle(shape, rotation)}
+              onClick={randomizeShape}
+            />
+          ))}
+        </Flex>
+
+      </Card>
+
     </div>
+
   );
 }
